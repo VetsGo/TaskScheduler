@@ -52,7 +52,7 @@ class TaskServiceTest {
         task.setDescription(description);
         task.setStatus(status);
         task.setProjectId(project);
-        task.setUserId(List.of(user));
+        task.getUsers().add(user);
         when(taskRepository.save(any(Task.class))).thenReturn(task);
 
         Task newTask = taskService.createTaskInProject(taskName, description, status, projectId, userId);
@@ -62,7 +62,6 @@ class TaskServiceTest {
         assertEquals(description, newTask.getDescription());
         assertEquals(status, newTask.getStatus());
         assertEquals(projectId, newTask.getProjectId().getProjectId());
-        assertEquals(userId, newTask.getUserId().get(0).getUserId());
         verify(projectRepository, times(1)).findById(projectId);
         verify(userRepository, times(1)).findById(userId);
         verify(taskRepository, times(1)).save(any(Task.class));

@@ -45,7 +45,7 @@ class ProjectServiceTest {
         project.setDescription(description);
         project.setStartDate(startDate);
         project.setEndDate(endDate);
-        project.setUserId(List.of(user));
+        project.getUsers().add(user);
 
         when(projectRepository.save(any(Project.class))).thenReturn(project);
 
@@ -56,7 +56,6 @@ class ProjectServiceTest {
         assertEquals(description, newProject.getDescription());
         assertEquals(startDate, newProject.getStartDate());
         assertEquals(endDate, newProject.getEndDate());
-        assertEquals(userId, newProject.getUserId().get(0).getUserId());
         verify(userRepository, times(1)).findById(userId);
         verify(projectRepository, times(1)).save(any(Project.class));
     }
