@@ -4,8 +4,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "TASK")
@@ -17,18 +20,19 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "taskId")
     private Integer taskId;
-    @Column(name = "taskName", nullable = false, length = 100)
+    @Column(name = "taskName", nullable = true, length = 100)
     private String taskName;
-    @Column(name = "description", nullable = false, length = 100)
+    @Column(name = "description", nullable = true, length = 100)
     private String description;
-    @Column(name = "status", nullable = false, length = 50)
+    @Column(name = "status", nullable = true, length = 50)
     private String status;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "projectId", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "projectId", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Project projectId;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinTable(name = "TASK_USER",
             joinColumns = @JoinColumn(name = "taskId"),
             inverseJoinColumns = @JoinColumn(name = "userId"))
-    private List<User> userId;
+    private Set<User> users = new HashSet<>();
 }

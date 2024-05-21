@@ -7,7 +7,6 @@ import com.example.taskscheduler.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Date;
-import java.util.List;
 
 @Service
 public class ProjectService {
@@ -28,7 +27,7 @@ public class ProjectService {
         newProject.setDescription(description);
         newProject.setStartDate(startDate);
         newProject.setEndDate(endDate);
-        newProject.setUserId(List.of(user));
+        newProject.getUsers().add(user);
 
         return projectRepository.save(newProject);
     }

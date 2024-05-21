@@ -6,7 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "PROJECT")
@@ -18,17 +19,17 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "projectId")
     private Integer projectId;
-    @Column(name = "projectName", nullable = false, length = 100)
+    @Column(name = "projectName", nullable = true, length = 100)
     private String projectName;
-    @Column(name = "description", nullable = false, length = 100)
+    @Column(name = "description", nullable = true, length = 100)
     private String description;
-    @Column(name = "startDate", length = 10)
+    @Column(name = "startDate", nullable = true, length = 10)
     private Date startDate;
-    @Column(name = "endDate", length = 10)
+    @Column(name = "endDate", nullable = true, length = 10)
     private Date endDate;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinTable(name = "PROJECT_USER",
             joinColumns = @JoinColumn(name = "projectId"),
             inverseJoinColumns = @JoinColumn(name = "userId"))
-    private List<User> userId;
+    private Set<User> users = new HashSet<>();
 }
