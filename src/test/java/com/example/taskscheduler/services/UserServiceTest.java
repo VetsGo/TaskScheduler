@@ -38,7 +38,7 @@ class UserServiceTest {
         User savedUser = new User();
         savedUser.setName(name);
         savedUser.setEmail(email);
-        savedUser.setPassword(hashedPassword.getBytes());
+        savedUser.setPassword(hashedPassword);
         when(userRepository.save(any(User.class))).thenReturn(savedUser);
 
         User registeredUser = userService.registerUser(name, email, password);
@@ -71,7 +71,7 @@ class UserServiceTest {
 
         User user = new User();
         user.setEmail(email);
-        user.setPassword("4284".getBytes());
+        user.setPassword("4284");
 
         when(userRepository.findByEmail(email)).thenReturn(Optional.of(user));
         when(passwordEncoder.matches(password, new String(user.getPassword()))).thenReturn(true);
@@ -89,7 +89,7 @@ class UserServiceTest {
 
         User user = new User();
         user.setEmail(email);
-        user.setPassword("428".getBytes());
+        user.setPassword("428");
 
         when(userRepository.findByEmail(email)).thenReturn(Optional.of(user));
         when(passwordEncoder.matches(password, new String(user.getPassword()))).thenReturn(false);

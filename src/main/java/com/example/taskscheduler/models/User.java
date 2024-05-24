@@ -22,5 +22,5 @@ public class User {
     private String email;
     @Column(name = "password", nullable = true, length = 60)
     @JsonIgnore
-    private byte[] password;
+    private String password;
 }

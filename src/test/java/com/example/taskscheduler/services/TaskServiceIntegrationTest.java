@@ -33,7 +33,7 @@ class TaskServiceIntegrationTest {
         User user = new User();
         user.setName("John Doe");
         user.setEmail("john.doe@example.com");
-        user.setPassword("password".getBytes());
+        user.setPassword("password");
         user = userRepository.save(user);
 
         Project project = new Project();

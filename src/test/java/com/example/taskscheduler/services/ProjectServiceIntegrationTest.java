@@ -30,7 +30,7 @@ class ProjectServiceIntegrationTest {
         User user = new User();
         user.setName("John Doe");
         user.setEmail("john.doe@example.com");
-        user.setPassword("password".getBytes());
+        user.setPassword("password");
         user = userRepository.save(user);
 
         Project project = projectService.createProject("New Project", "Description", new Date(), new Date(), user.getUserId());

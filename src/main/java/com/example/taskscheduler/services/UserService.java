@@ -20,10 +20,10 @@ public class UserService {
 
     public User registerUser(String name, String email, String password) {
         if (userRepository.findByEmail(email).isPresent()) {
-            throw new RuntimeException("User is already exists");
+            throw new RuntimeException("User already exists");
         }
 
-        byte[] hashedPassword = passwordEncoder.encode(password).getBytes();
+        String hashedPassword = passwordEncoder.encode(password);
 
         User newUser = new User();
         newUser.setName(name);
@@ -34,9 +34,9 @@ public class UserService {
 
     public User loginUser(String email, String password) {
         User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User was not found"));
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-        if (!passwordEncoder.matches(password, new String(user.getPassword()))) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new RuntimeException("Invalid password");
         }
         return user;
@@ -44,7 +44,7 @@ public class UserService {
 
     public User getUserInfoById(Integer userId) {
         return userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User was not found"));
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     public void deleteUserById(Integer userId) {

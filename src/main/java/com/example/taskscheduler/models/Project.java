@@ -1,9 +1,11 @@
 package com.example.taskscheduler.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -24,8 +26,10 @@ public class Project {
     @Column(name = "description", nullable = true, length = 100)
     private String description;
     @Column(name = "startDate", nullable = true, length = 10)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
     @Column(name = "endDate", nullable = true, length = 10)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinTable(name = "PROJECT_USER",

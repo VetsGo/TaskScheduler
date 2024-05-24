@@ -24,23 +24,23 @@ class UserServiceIntegrationTest {
 
     @Test
     void testRegisterUser() {
-        User user = userService.registerUser("Jot", "jot.@example.com", "password");
+        User user = userService.registerUser("Jo", "jo.@example.com", "password");
 
         assertNotNull(user);
-        assertEquals("Jot", user.getName());
-        assertEquals("jot.@example.com", user.getEmail());
-        assertTrue(userRepository.findByEmail("jot.@example.com").isPresent());
+        assertEquals("Jo", user.getName());
+        assertEquals("jo.@example.com", user.getEmail());
+        assertTrue(userRepository.findByEmail("jo.@example.com").isPresent());
     }
 
     @Test
     void testLoginUser() {
         User user = new User();
-        user.setName("Jol De");
-        user.setEmail("jol.de@example.com");
-        user.setPassword(passwordEncoder.encode("1234").getBytes());
+        user.setName("Jor De");
+        user.setEmail("jor.de@example.com");
+        user.setPassword(passwordEncoder.encode("1234"));
         user = userRepository.save(user);
 
-        User loggedInUser = userService.loginUser("jol.de@example.com", "1234");
+        User loggedInUser = userService.loginUser("jor.de@example.com", "1234");
 
         assertNotNull(loggedInUser);
         assertEquals(user.getUserId(), loggedInUser.getUserId());
@@ -51,7 +51,7 @@ class UserServiceIntegrationTest {
         User user = new User();
         user.setName("John Doe");
         user.setEmail("john.doe@example.com");
-        user.setPassword("password".getBytes());
+        user.setPassword("password");
         user = userRepository.save(user);
 
         User foundUser = userService.getUserInfoById(user.getUserId());
@@ -65,7 +65,7 @@ class UserServiceIntegrationTest {
         User user = new User();
         user.setName("John Doe");
         user.setEmail("john.doe@example.com");
-        user.setPassword("password".getBytes());
+        user.setPassword("password");
         user = userRepository.save(user);
 
         userService.deleteUserById(user.getUserId());
