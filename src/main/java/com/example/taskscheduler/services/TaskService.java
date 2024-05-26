@@ -9,6 +9,8 @@ import com.example.taskscheduler.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TaskService {
     private final TaskRepository taskRepository;
@@ -70,5 +72,9 @@ public class TaskService {
 
     public void deleteTaskById(Integer taskId) {
         taskRepository.deleteById(taskId);
+    }
+
+    public List<Task> getAllTasks() {
+        return taskRepository.findAll();
     }
 }

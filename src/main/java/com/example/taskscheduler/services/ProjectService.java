@@ -7,6 +7,7 @@ import com.example.taskscheduler.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ProjectService {
@@ -71,5 +72,9 @@ public class ProjectService {
 
         project.setEndDate(newEndDate);
         return projectRepository.save(project);
+    }
+
+    public List<Project> getAllProjects() {
+        return projectRepository.findAll();
     }
 }
