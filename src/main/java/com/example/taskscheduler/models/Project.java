@@ -21,14 +21,14 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "projectId")
     private Integer projectId;
-    @Column(name = "projectName", nullable = false, length = 100)
+    @Column(name = "projectName", nullable = true, length = 100)
     private String projectName;
-    @Column(name = "description", nullable = false, length = 100)
+    @Column(name = "description", nullable = true, length = 100)
     private String description;
-    @Column(name = "startDate", nullable = false, length = 10)
+    @Column(name = "startDate", nullable = true, length = 10)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
-    @Column(name = "endDate", nullable = false, length = 10)
+    @Column(name = "endDate", nullable = true, length = 10)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
     @ManyToMany(fetch = FetchType.EAGER)

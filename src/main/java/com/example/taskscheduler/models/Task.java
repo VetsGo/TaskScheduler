@@ -20,14 +20,14 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "taskId")
     private Integer taskId;
-    @Column(name = "taskName", nullable = false, length = 100)
+    @Column(name = "taskName", nullable = true, length = 100)
     private String taskName;
-    @Column(name = "description", nullable = false, length = 100)
+    @Column(name = "description", nullable = true, length = 100)
     private String description;
-    @Column(name = "status", nullable = false, length = 50)
+    @Column(name = "status", nullable = true, length = 50)
     private String status;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "projectId", nullable = false)
+    @JoinColumn(name = "projectId", nullable = true)
     //@OnDelete(action = OnDeleteAction.CASCADE)
     private Project projectId;
     @ManyToMany(fetch = FetchType.EAGER)

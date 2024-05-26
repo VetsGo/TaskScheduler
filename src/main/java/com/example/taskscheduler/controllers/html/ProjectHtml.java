@@ -51,6 +51,13 @@ public class ProjectHtml {
         return "projectinfo";
     }
 
+    @GetMapping("/{projectId}/update")
+    public String showUpdateProjectForm(@PathVariable Integer projectId, Model model) {
+        Project project = projectService.getProjectById(projectId);
+        model.addAttribute("project", project);
+        return "project-update";
+    }
+
     @PostMapping("/{projectId}/update")
     public String updateProject(@PathVariable Integer projectId, @ModelAttribute Project project) {
         projectService.updateProjectName(projectId, project.getProjectName());
