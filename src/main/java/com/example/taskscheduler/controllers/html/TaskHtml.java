@@ -59,9 +59,14 @@ public class TaskHtml {
         return "redirect:/tasks/" + taskId;
     }
 
+    @GetMapping("/deleted")
+    public String showDeletedPage() {
+        return "deleted";
+    }
+
     @PostMapping("/{taskId}/delete")
     public String deleteTaskById(@PathVariable Integer taskId) {
         taskService.deleteTaskById(taskId);
-        return "redirect:/tasks";
+        return "redirect:/tasks/deleted";
     }
 }
