@@ -1,7 +1,6 @@
 package com.example.taskscheduler.controllers.html;
 
 import com.example.taskscheduler.models.Project;
-import com.example.taskscheduler.models.User;
 import com.example.taskscheduler.services.ProjectService;
 import com.example.taskscheduler.services.UserService;
 import lombok.RequiredArgsConstructor;
