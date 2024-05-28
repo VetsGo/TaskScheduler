@@ -49,9 +49,21 @@ public class UserHtml {
         return "userinfo";
     }
 
-    @DeleteMapping("/{userId}")
+    @GetMapping("/{userId}/delete")
+    public String showDeleteUserForm(@PathVariable Integer userId, Model model) {
+        User user = userService.getUserInfoById(userId);
+        model.addAttribute("user", user);
+        return "user-delete";
+    }
+
+    @PostMapping("/{userId}/delete")
     public String deleteUserById(@PathVariable Integer userId) {
         userService.deleteUserById(userId);
-        return "redirect:/users";
+        return "redirect:/users/deleted";
+    }
+
+    @GetMapping("/deleted")
+    public String showDeletedUserPage() {
+        return "deleted";
     }
 }

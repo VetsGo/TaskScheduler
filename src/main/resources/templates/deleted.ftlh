@@ -5,6 +5,6 @@
     <title>Task Deleted</title>
 </head>
 <body>
-    <h1>Task was successfully deleted</h1>
+    <h1>Item was successfully deleted</h1>
 </body>
 </html>

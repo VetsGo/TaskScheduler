@@ -66,9 +66,21 @@ public class ProjectHtml {
         return "redirect:/projects/" + projectId;
     }
 
-    @DeleteMapping("/{projectId}")
+    @GetMapping("/{projectId}/delete")
+    public String showDeleteProjectForm(@PathVariable Integer projectId, Model model) {
+        Project project = projectService.getProjectById(projectId);
+        model.addAttribute("project", project);
+        return "project-delete";
+    }
+
+    @PostMapping("/{projectId}/delete")
     public String deleteProjectById(@PathVariable Integer projectId) {
         projectService.deleteProjectById(projectId);
-        return "redirect:/projects";
+        return "redirect:/projects/deleted";
+    }
+
+    @GetMapping("/deleted")
+    public String showDeletedProjectPage() {
+        return "deleted";
     }
 }
