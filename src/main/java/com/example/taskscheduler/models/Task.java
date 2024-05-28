@@ -28,7 +28,6 @@ public class Task {
     private String status;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "projectId", nullable = true)
-    //@OnDelete(action = OnDeleteAction.CASCADE)
     private Project projectId;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "TASK_USER",
