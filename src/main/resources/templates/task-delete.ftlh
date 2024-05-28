@@ -11,6 +11,6 @@
         <input type="hidden" name="_method" value="delete"/>
         <button type="submit">Delete Task</button>
     </form>
-    <a href="/tasks/${task.taskId}">Back to Task Details</a>
+    <p>Task was deleted<p>
 </body>
 </html>
